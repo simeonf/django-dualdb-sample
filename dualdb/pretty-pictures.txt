@@ -1,0 +1,3 @@
+sudo apt-get install libgraphviz-dev
+pip install pygraphviz
+python manage.py graph_models -a -g -o models.png

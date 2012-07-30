@@ -1,0 +1,15 @@
+This is an quick example of multi-db support in django and a
+demonstration of the inspectdb management command as requested by
+students in my Django class. 
+
+The sample database comes from http://chinookdatabase.codeplex.com/ -
+see the license for the included .sqlite database there.
+
+The chinook app is the result of running the inspectdb command to
+generate a models file and writng a router to handle my desired use
+case where:
+
+ - models from the required contrib apps live in their own .sqlite db
+ - but we create an admin to edit the (otherwise unmodified) chinook
+   database.
+
