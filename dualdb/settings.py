@@ -1,5 +1,8 @@
 # Django settings for dualdb project.
 
+import os
+DIR = os.path.abspath(os.path.dirname(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,21 +14,21 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'django.sqlite3',                     
-        'USER': '',                     
-        'PASSWORD': '',                 
-        'HOST': '',                     
-        'PORT': '',                     
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': os.path.join(DIR, 'django.sqlite3'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     },
     'chinookdb': { # this is our sample db, already created
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'Chinook_Sqlite.sqlite',                     
-        'USER': '',                     
-        'PASSWORD': '',                 
-        'HOST': '',                     
-        'PORT': '',                     
-    }    
+        'NAME': os.path.join(DIR, 'Chinook_Sqlite.sqlite'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
 }
 
 # Local time zone for this installation. Choices can be found here:
