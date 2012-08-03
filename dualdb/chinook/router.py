@@ -18,19 +18,16 @@ class ChinookRouter(object):
         return 'default'
     
     def allow_relation(self, obj1, obj2, **hints):
-        "Allow any relation if a model in chinook is involved"
-        return True
-        if obj1._meta.app_label == 'chinook' or obj2._meta.app_label == 'chinook':
+        "Allow any relation if a both models in chinook app"
+        if obj1._meta.app_label == 'chinook' and obj2._meta.app_label == 'chinook':
             return True
-        return None
+        # Allow if neither is chinook app
+        elif 'chinook' not in [obj1._meta.app_label, obj2._meta.app_label]: 
+            return True
+        return False
     
     def allow_syncdb(self, db, model):
-        "This has nothing to do with the syncdb command!"""
-        if db == 'chinookdb':
-            # models in chinook save to chinookdb
-            return model._meta.app_label == 'chinook' 
-        elif model._meta.app_label == 'chinook':
-            # models in chinook do not save to default
-            return False
-        else: # but all other models can save to default
+        if db == 'chinookdb' or model._meta.app_label == "chinook":
+            return False # we're not using syncdb on our legacy database
+        else: # but all other models/databases are fine
             return True
