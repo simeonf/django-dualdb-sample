@@ -18,7 +18,7 @@ class Album(models.Model):
     artist = models.ForeignKey("Artist", db_column=u'ArtistId') # Field name made lowercase.
 
     def __unicode__(self):
-        return self.title
+        return u"%s" % self.title
 
     class Meta:
         db_table = u'Album'
